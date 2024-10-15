@@ -1,6 +1,6 @@
 def QuickSort (A:list[int], p:int, r:int):
     if (p < r):
-        q = Partition(A, p, r)
+        q = Partition(A, p, r)     
         QuickSort(A, p, q - 1)
         QuickSort(A, q + 1, r)
         return A
@@ -8,7 +8,7 @@ def QuickSort (A:list[int], p:int, r:int):
         return A
 
 def Partition(A:list[int], p:int, r:int):
-    x = A[r]
+    x = A[r]                                           #Elemento Pivote
     i = p - 1
     j = p
     for j in range(p,r):

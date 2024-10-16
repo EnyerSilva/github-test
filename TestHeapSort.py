@@ -1,6 +1,6 @@
 import sys
 import time
-from heapsortr import *
+from HeapSort import *
 
 archivo = sys.argv[1]
 file = open(archivo, "r")

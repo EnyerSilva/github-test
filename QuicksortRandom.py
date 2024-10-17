@@ -1,14 +1,14 @@
 import random
 def Randomized_Quicksort(A:list[int], p:int, r:int):
     if (p < r):
-        q = Randomized_Particion(A, p, r)
+        q = Randomized_Partition(A, p, r)
         Randomized_Quicksort(A, p, q - 1)
         Randomized_Quicksort(A, q + 1, r)
         return A
     else:
         return A
 
-def Randomized_Particion(A:list[int], p:int, r:int):
+def Randomized_Partition(A:list[int], p:int, r:int):
     i = random.randint(p, r)
     A[i] , A[r] = A[r] , A[i]
     return Partition(A, p, r)

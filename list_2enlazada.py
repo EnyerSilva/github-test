@@ -7,7 +7,7 @@ class Nodo(object):
         self.prev = None
         self.lista = None
 
-class double_list(object):
+class Double_List(object):
     def __init__(self):
         self.head = None
 
@@ -25,7 +25,7 @@ class double_list(object):
             nuevo_nodo = Nodo(x)
             nuevo_nodo.next = self.head
             self.head.prev = nuevo_nodo
-            self.nuevo_nodo = None
+            nuevo_nodo.prev = None
             self.head = nuevo_nodo
             return self.head
         
@@ -64,19 +64,20 @@ class double_list(object):
     def print_list(self):
         if self.head == None:
             print("La lista esta vacia")
+            return
         else:
             current = self.head
             strin = " "
             while current != None:
-                strin += str(current.data) + " ,"
+                strin += str(current.data) + "  "
                 current = current.next
             print(strin)
 
-lista = double_list()
+lista = Double_List()
 lista.List_Insert(5)
 lista.List_Insert(4)       
 lista.List_Insert(8)       
-#print(lista.List_Search(8))
+print(lista.List_Search(8))
 lista.print_list()
 lista.List_Delete(4)
 lista.print_list()

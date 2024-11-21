@@ -72,6 +72,54 @@ class double_list(object):
                 current = current.next
             print(strin)
 
+
+class sentinelas(object):
+    def __init__(self):
+        # Inicialización del nodo sentinela
+        self.s = Nodo()
+        self.s.next = self.s
+        self.s.prev = self.s
+    
+    def List_Search_s(self, k):
+        x = self.s.next
+        while x != self.s and x.k != k:
+            x = x.next
+        return x
+
+    def List_insert_s(self, x):
+        nuevo_nodo = Nodo(x)
+        last = self.s.prev
+        nuevo_nodo.next = self.s
+        nuevo_nodo.prev = last
+        last.next = nuevo_nodo
+        self.s.prev = nuevo_nodo
+
+    def List_Delete_s(self, x):
+        x.prev.next = x.next
+        x.next.prev = x.prev
+        x.next = None
+        x.prev = None
+
+class FreeList(object):
+    def __init__(self):
+        self.head = None
+
+    def Allocate_Object(self,k):
+        if self.head is None:
+            return Nodo(k)
+        else:
+            nodo = self.head
+            self.head = self.head.next
+            nodo.k = k
+            nodo.next = None
+            nodo.prev = None
+            return nodo
+
+    def Free_Object(self, x):
+        x.next = self.head
+        self.head = x
+
+
 lista = double_list()
 lista.List_Insert(5)
 lista.List_Insert(4)       

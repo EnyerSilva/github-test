@@ -6,6 +6,9 @@ class Nodo(object):
         self.left = None
         self.right = None
         self.parent = None
+    
+    def __str__(self):
+        return f"Nodo con key: {self.key}"
 
 class Tree(object):
     def __init__(self):
@@ -53,7 +56,16 @@ class Tree(object):
             return Tree.tree_search(self, x.left, k)
         else:
             return Tree.tree_search(self, x.right, k)
-    
+        
+    def tree_minimum(self, x):
+        while (x.left != None):
+            x = x.left
+        return x
+
+    def tree_maximum(self, x):
+        while (x.right != None):
+            x = x.right
+        return x
 
 
 tree = Tree()
@@ -72,10 +84,12 @@ tree.tree_insert(Nodo(17))
 #root.right = Nodo(3)
 #root.left.left = Nodo(4)
 #root.left.right = Nodo(5)
-tree.inorder_tree_walk(tree.root)
+'''tree.inorder_tree_walk(tree.root)
 print("\n")
 tree.preorder_tree_walk(tree.root)
 print("\n")
-tree.postorder_tree_walk(tree.root)
+tree.postorder_tree_walk(tree.root)'''
 
-tree.tree_search(tree.root, 9)
+print(tree.tree_minimum(tree.root))
+print(tree.tree_maximum(tree.root))
+print(tree.tree_search(tree.root, 5))

@@ -30,19 +30,6 @@ class Tree(object):
             y.left = z
         else:
             y.right = z
-
-    def tree_search(self, x, k):
-        if x == None or x.key == k:
-            return x
-        if k < x.key:
-            return self.tree_search(x.left, k)
-        else:
-            return self.tree_search(x.right, k)
-
-    def tree_minimum(self, x):
-        while x != None and x.left != None:
-            x = x.left
-        return x    #para retornar la clave ponemos x.key sino nos retornara es el apuntador 
     
     def inorder_tree_walk(self, x):
         if x != None:

@@ -14,23 +14,6 @@ class Tree(object):
     def __init__(self):
         self.root = None
     
-    def tree_insert(self, z):
-        y = None
-        x = self.root
-        while x != None:
-            y = x
-            if z.key < x.key:
-                x = x.left
-            else:
-                x = x.right
-        z.parent = y
-        if y == None:
-            self.root = z
-        elif z.key < y.key:
-            y.left = z
-        else:
-            y.right = z
-    
     def inorder_tree_walk(self, x):
         if x != None:
             self.inorder_tree_walk(x.left)
@@ -53,9 +36,9 @@ class Tree(object):
         if ((x == None) or (k == x.key)):
             return x
         if (k < x.key):
-            return Tree.tree_search(self, x.left, k)
+            return self.tree_search(x.left, k)
         else:
-            return Tree.tree_search(self, x.right, k)
+            return self.tree_search(x.right, k)
         
     def tree_minimum(self, x):
         while (x.left != None):
@@ -66,6 +49,43 @@ class Tree(object):
         while (x.right != None):
             x = x.right
         return x
+    
+    def tree_succesor(self, x):
+        if (x.right != None):
+            return self.tree_minimum(x.right)
+        else:
+            y = x.parent
+            while ((y != None) and (x == y.right)):
+                x = y
+                y = y.parent
+            return y
+        
+    def tree_predecessor(self, x):
+        if (x.left != None):
+            return self.tree_maximum(x.left)
+        else:
+            y = x.parent
+            while ((y != None) and (x == y.left)):
+                x = y
+                y = y.parent
+            return y
+    
+    def tree_insert(self, z):
+        y = None
+        x = self.root
+        while x != None:
+            y = x
+            if z.key < x.key:
+                x = x.left
+            else:
+                x = x.right
+        z.parent = y
+        if y == None:
+            self.root = z
+        elif z.key < y.key:
+            y.left = z
+        else:
+            y.right = z
 
     def transplant(self, u, v):
         if u.parent == None:
@@ -102,27 +122,9 @@ tree.tree_insert(Nodo(15))
 tree.tree_insert(Nodo(19))
 tree.tree_insert(Nodo(13))
 tree.tree_insert(Nodo(17))
-#tree.tree_delete(tree.root.left.left)
-print(tree.tree_search(tree.root, 109))
-#######################################################
-#root = Nodo(1)
-#root.left = Nodo(2)
-#root.right = Nodo(3)
-#root.left.left = Nodo(4)
-#root.left.right = Nodo(5)
-'''tree.inorder_tree_walk(tree.root)
+
+tree.inorder_tree_walk(tree.root)
 print("\n")
 tree.preorder_tree_walk(tree.root)
 print("\n")
-tree.postorder_tree_walk(tree.root)'''
-
-print(tree.tree_minimum(tree.root))
-print(tree.tree_maximum(tree.root))
-print(tree.tree_search(tree.root, 5))
-#######################################################
-#tree.inorder_tree_walk(tree.root)
-#print("\n")
-#tree.preorder_tree_walk(tree.root)
-#print("\n")
-#tree.postorder_tree_walk(tree.root)
-#print(tree.tree_minimum(tree.root))
+tree.postorder_tree_walk(tree.root)

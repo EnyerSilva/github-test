@@ -45,6 +45,16 @@ class Tree(object):
             self.postorder_tree_walk(x.left)
             self.postorder_tree_walk(x.right)
             print(x.key)
+    
+    def tree_search(self, x, k):
+        if ((x == None) or (k == x.key)):
+            return x
+        if (k < x.key):
+            return Tree.tree_search(self, x.left, k)
+        else:
+            return Tree.tree_search(self, x.right, k)
+    
+
 
 tree = Tree()
 tree.tree_insert(Nodo(12))
@@ -67,3 +77,5 @@ print("\n")
 tree.preorder_tree_walk(tree.root)
 print("\n")
 tree.postorder_tree_walk(tree.root)
+
+tree.tree_search(tree.root, 9)
